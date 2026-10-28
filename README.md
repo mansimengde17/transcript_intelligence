@@ -69,21 +69,104 @@ curl -H 'X-API-Key: local-admin' 'http://localhost:8080/v1/search?q=threat+visib
 
 API keys are a local demonstration mechanism. The production design uses OAuth2/OIDC, workload identity, short-lived credentials, and database-enforced tenant scopes.
 
-## Approach
+## How the project works—and why this approach was chosen
 
-The solution uses a hybrid, explainable method:
+Imagine a customer mentions an outage in a support call, engineering discusses the same problem internally, and the issue comes up again during renewal. Reading each meeting separately makes that connection easy to miss. This project organizes those conversations so teams can find recurring problems, inspect the evidence, and decide who should follow up.
 
-1. **Call type** comes from participant email domains and title patterns. All-internal domains become internal calls. External participants with support or escalation patterns become support calls. Other customer conversations become external calls.
-2. **Themes** come from a curated multi-label keyword taxonomy applied to titles, summaries, source topics, and key moments. The highest-evidence theme becomes the primary theme; the next becomes secondary.
-3. **Sentiment** aggregates the supplied sentence-level labels and meeting-level 1-5 score. The pipeline preserves both because a single average can hide a difficult section inside an otherwise productive meeting.
-4. **Risk** combines low meeting sentiment with explicit churn signals, concerns, technical issues, and feature gaps. Positive pivots and praise reduce the score. This score is a prioritization heuristic, not a churn probability.
-5. **Retrieval** combines BM25, sparse TF-IDF, and 64-dimensional latent semantic analysis over evidence-preserving transcript chunks.
-6. **Agent orchestration** separates policy, classification, retrieval, risk, and synthesis responsibilities. Low confidence, high risk, policy signals, missing evidence, or node failures route to human review.
-7. **Governance** applies redaction, account-scoped RBAC, transform lineage, evidence citations, durable checkpoints, and a tamper-evident audit ledger.
+The project is a working analysis pipeline and API prototype. It produces spreadsheets, charts, searchable evidence, and meeting reports. The interactive API page lets reviewers try search and analysis; the proposed account timeline and leadership dashboard are future product views.
 
-## Why agents are selective
+### 1. Turn meeting records into consistent information
 
-Parsing, permissions, redaction, scoring, and audit logging remain deterministic because agents add cost and variance without improving those tasks. Agents add value when the workflow needs evidence gathering, ambiguity resolution, tool selection, synthesis, or a human escalation. The evaluation suite enforces this boundary.
+The pipeline reads the supplied meeting files, including participants, transcripts, summaries, topics, sentiment labels, and action items. It creates one consistent analysis row for each meeting.
+
+**Why:** Meetings arrive as several files and contain different kinds of information. A common structure makes comparisons possible and keeps a reference back to the original meeting.
+
+**Benefit:** Reviewers can compare all 100 meetings without opening every source file individually.
+
+### 2. Group conversations into understandable categories
+
+Participant email domains and meeting titles help identify internal, external, and support calls. A defined list of themes groups related language into subjects such as reliability, compliance, and identity. Clear title intent receives extra weight. Meetings may match several themes, while one primary theme supports summary reporting.
+
+**Why:** A consistent set of categories is easier to explain and check than generating a new label for every conversation.
+
+**Benefit:** Support, product, and engineering can discuss the same problem using shared categories, while reviewers can inspect the evidence behind a label.
+
+### 3. Identify where attention may be needed
+
+The project preserves supplied sentiment scores and sentence-level sentiment labels. It combines low sentiment with explicit concerns, technical issues, feature gaps, and churn signals to create a bounded risk score. Praise and positive turns in the conversation reduce that score.
+
+**Why:** An average sentiment score alone can hide a serious problem within an otherwise positive relationship.
+
+**Benefit:** Customer success teams get a starting point for account review. The score is a priority indicator, not a probability that a customer will leave, and should be checked against the underlying conversation.
+
+### 4. Retrieve evidence using both words and meaning
+
+Search combines exact-word matching with statistical methods that recognize related language. Technically, these are BM25, TF-IDF, and latent semantic analysis. Results retain source references and score details.
+
+**Why:** A user searching for an outage may need evidence described using words such as failure or loss of visibility. Combining methods helps cover different ways of expressing a concern.
+
+**Benefit:** Reviewers can move from a broad finding to relevant transcript passages and verify the basis for a decision.
+
+### 5. Coordinate analysis with a controlled workflow
+
+The agent workflow separates policy checks, classification, evidence retrieval, risk assessment, and report synthesis. It records decisions and intermediate progress, and can route cases for human review when configured conditions are met.
+
+**Why:** Separating responsibilities makes failures easier to locate and decisions easier to inspect. Parsing, permissions, redaction, and scoring stay in repeatable code. The default demonstration uses deterministic local behavior; optional adapters support model-backed workflows.
+
+**Benefit:** The prototype is inexpensive to reproduce, works without a paid model API, and provides a controlled foundation for adding more flexible reasoning where it proves useful.
+
+### 6. Check quality and preserve accountability
+
+Automated checks test classification, retrieval, citations, sensitive-information handling, access restrictions, risk bounds, and audit integrity. Source hashes help detect changes, while linked audit events help reveal changes to the recorded history.
+
+**Why:** A convincing demonstration alone does not establish that a system behaves consistently or respects access rules.
+
+**Benefit:** Changes can be checked for regressions, and reviewers have a record to investigate. These prototype controls still need broader validation before production use.
+
+## How different teams can use the results
+
+| Team | What they can learn | Practical next step |
+| --- | --- | --- |
+| Customer success | Accounts with difficult conversations or repeated concerns | Review the evidence and coordinate follow-up with the account owner |
+| Support | Common problems across customer calls | Identify recurring escalations and share examples with engineering |
+| Engineering | Reliability issues discussed across teams | Compare transcript evidence with incident records and prioritize investigation |
+| Product | Repeated feature gaps and adoption concerns | Review customer examples when planning the backlog |
+| Leadership | Themes, sentiment differences, and areas needing attention | Assign owners and ask for evidence-backed updates |
+
+The pipeline also extracts 397 action items. These provide a foundation for commitment tracking; due dates and completion tracking still need to be added.
+
+## A guide to the folders and files
+
+| Folder or file | What it contains | How it is used |
+| --- | --- | --- |
+| `data/raw/` | The supplied meeting records, organized by meeting | Input to the analysis; preserves the original evidence |
+| `src/pipeline.py` | The main analytics process | Reads meetings, assigns categories, summarizes sentiment and risk, and writes tables and charts |
+| `src/ti/` | Search, workflow, access controls, API, model adapters, and supporting components | Powers evidence search and meeting analysis |
+| `analysis/` | Generated meeting tables, theme summaries, account priorities, action items, and written findings | The main place for a business reviewer to explore results |
+| `analysis/charts/` | Images of theme frequency, sentiment, trends, and account risk | Visual explanation of the findings |
+| `analysis/advanced/` | Evaluation results, example workflow reports, and additional analysis | Shows how the system performed and examples of its output |
+| `notebooks/` | Guided analysis and verification notebooks | Lets a technical reviewer explore the work step by step |
+| `evals/` | Quality checks and pass/fail thresholds | Measures whether changes meet the prototype's quality requirements |
+| `tests/` | Automated component and integration tests | Checks expected behavior and failure cases |
+| `docs/` | Architecture, governance, and model documentation | Explains design choices, controls, and limitations |
+| `deploy/` | Kubernetes deployment configuration | A starting point for running the service in a managed environment |
+| `.github/workflows/` | Automated GitHub quality-check configuration | Defines checks to run when repository changes trigger the workflow |
+| `runtime/` | Locally generated checkpoints, traces, and audit records | Records workflow execution; excluded from GitHub |
+| `requirements.txt` | Core Python dependencies | Installs the software needed for the default local demonstration |
+| `requirements-agentic.txt` | Optional integration dependencies | Adds support for model and agent-framework integrations |
+| `Makefile` | Short commands for building, evaluating, testing, and serving | Provides repeatable ways to run the project |
+| `Dockerfile`, `docker-compose.yml` | Container setup | Provides another way to package and run the application |
+| `Transcript_Intelligence_Applied_AI_Review.pptx` | Findings, recommendations, and technical appendix | Presentation for stakeholders and interview reviewers |
+
+## Where a nontechnical reviewer should start
+
+1. Open the PowerPoint for the business findings and recommendations.
+2. Read `analysis/insights.md` for the written analysis.
+3. View `analysis/charts/` for the main comparisons.
+4. Open `analysis/account_risk.csv` to explore account priorities and `analysis/action_items.csv` to inspect extracted commitments.
+5. Ask for a demonstration of `/docs` to see evidence search and meeting analysis in action. Use the Run it and API instructions in this README to start the local demonstration.
+
+CSV files can be opened in Excel or another spreadsheet application. Scores and summaries should be interpreted alongside the original meeting evidence.
 
 ## Evaluation gates
 
