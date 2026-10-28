@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transcript-intelligence
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: transcript-intelligence
+  template:
+    metadata:
+      labels:
+        app: transcript-intelligence
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: api
+          image: transcript-intelligence:2.0.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TI_API_KEYS
+              valueFrom:
+                secretKeyRef:
+                  name: transcript-intelligence-secrets
+                  key: api-keys
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 10001
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: runtime
+              mountPath: /app/runtime
+      volumes:
+        - name: runtime
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transcript-intelligence
+spec:
+  selector:
+    app: transcript-intelligence
+  ports:
+    - port: 80
+      targetPort: 8080

@@ -1,0 +1,119 @@
+{
+  "metrics": {
+    "classification_accuracy": 1.0,
+    "retrieval_recall_at_3": 1.0,
+    "citation_coverage": 1.0,
+    "safety_redaction_and_injection": true,
+    "rbac_negative_test": true,
+    "risk_bounds": true,
+    "audit_chain_valid": true,
+    "audit_entries": 36,
+    "runtime_seconds": 0.454
+  },
+  "gates": {
+    "classification_accuracy": true,
+    "retrieval_recall_at_3": true,
+    "citation_coverage": true,
+    "safety": true,
+    "cost_per_meeting": true
+  },
+  "passed": true,
+  "classification_cases": [
+    {
+      "case": "Support Case #9279",
+      "expected_call_type": "Support",
+      "expected_theme": "Billing & pricing",
+      "actual_call_type": "Support",
+      "actual_theme": "Billing & pricing",
+      "passed": true
+    },
+    {
+      "case": "Weekly Engineering Standup",
+      "expected_call_type": "Internal",
+      "expected_theme": "Product planning & delivery",
+      "actual_call_type": "Internal",
+      "actual_theme": "Product planning & delivery",
+      "passed": true
+    },
+    {
+      "case": "Aegis / Atlas Precision - Contract Discussion",
+      "expected_call_type": "External",
+      "expected_theme": "Commercial & renewal",
+      "actual_call_type": "External",
+      "actual_theme": "Commercial & renewal",
+      "passed": true
+    },
+    {
+      "case": "INCIDENT: Detect Pipeline Failure",
+      "expected_call_type": "Internal",
+      "expected_theme": "Reliability & incidents",
+      "actual_call_type": "Internal",
+      "actual_theme": "Reliability & incidents",
+      "passed": true
+    },
+    {
+      "case": "Support Case #6635",
+      "expected_call_type": "Support",
+      "expected_theme": "Identity & access",
+      "actual_call_type": "Support",
+      "actual_theme": "Identity & access",
+      "passed": true
+    },
+    {
+      "case": "Aegis / Redwood Clinical - ISO 27001",
+      "expected_call_type": "External",
+      "expected_theme": "Compliance & reporting",
+      "actual_call_type": "External",
+      "actual_theme": "Compliance & reporting",
+      "passed": true
+    },
+    {
+      "case": "Support Case #9856",
+      "expected_call_type": "Support",
+      "expected_theme": "Backup & recovery",
+      "actual_call_type": "Support",
+      "actual_theme": "Backup & recovery",
+      "passed": true
+    },
+    {
+      "case": "Competitive Landscape Review",
+      "expected_call_type": "Internal",
+      "expected_theme": "Competitive intelligence",
+      "actual_call_type": "Internal",
+      "actual_theme": "Competitive intelligence",
+      "passed": true
+    }
+  ],
+  "retrieval_cases": [
+    {
+      "query": "Trailhead alerts stopped firing for fifteen hours",
+      "expected_domain": "trailheadmkt.com",
+      "rank": 1,
+      "passed": true
+    },
+    {
+      "query": "Clearwater unexpected overage charges",
+      "expected_domain": "clearwatermed.com",
+      "rank": 1,
+      "passed": true
+    },
+    {
+      "query": "Coastal SAML certificate rotation",
+      "expected_domain": "coastalliving.com",
+      "rank": 1,
+      "passed": true
+    },
+    {
+      "query": "Northstar zero threat visibility HIPAA",
+      "expected_domain": "northstarpharma.com",
+      "rank": 1,
+      "passed": true
+    }
+  ],
+  "pii_counts": {
+    "email": 1,
+    "phone": 0,
+    "ipv4": 1,
+    "api_key": 1
+  }
+}

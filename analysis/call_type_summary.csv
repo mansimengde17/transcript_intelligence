@@ -1,0 +1,4 @@
+call_type,meeting_count,avg_sentiment_score,avg_negative_utterance_pct,churn_signals,feature_gaps,avg_risk_score
+External,39,3.9,9.5,21,23,2.79
+Internal,30,3.42,16.9,13,15,3.26
+Support,31,2.8,27.1,27,13,5.33

@@ -1,0 +1,170 @@
+[
+  {
+    "meeting_id": "01KQ03B0303900521BB089CA",
+    "call_type": "Internal",
+    "primary_theme": "Reliability & incidents",
+    "risk_score": 5.8,
+    "evidence_chunk_ids": [
+      "01KQ03B0303900521BB089CA:002",
+      "01KQ03B0303900521BB089CA:001",
+      "01KQ03B0303900521BB089CA:005",
+      "01KQ3CE40428CCC5FF433FFC:001"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ0C1280EDA4E70AAD7C35",
+    "call_type": "Support",
+    "primary_theme": "Billing & pricing",
+    "risk_score": 2.4,
+    "evidence_chunk_ids": [
+      "01KQ0C1280EDA4E70AAD7C35:003",
+      "01KQ0C1280EDA4E70AAD7C35:002",
+      "01KQ0C1280EDA4E70AAD7C35:000",
+      "01KQ0C1280EDA4E70AAD7C35:001"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ0CAE7F064EC93F0540CA",
+    "call_type": "Internal",
+    "primary_theme": "Product planning & delivery",
+    "risk_score": 0.0,
+    "evidence_chunk_ids": [
+      "01KQ0CAE7F064EC93F0540CA:003",
+      "01KQ0CAE7F064EC93F0540CA:004",
+      "01KQ0CAE7F064EC93F0540CA:000",
+      "01KQ0CAE7F064EC93F0540CA:002"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ0DFE299AC7A74E8022CA",
+    "call_type": "External",
+    "primary_theme": "Compliance & reporting",
+    "risk_score": 0.0,
+    "evidence_chunk_ids": [
+      "01KQ0DFE299AC7A74E8022CA:002",
+      "01KQ0DFE299AC7A74E8022CA:001",
+      "01KQ0DFE299AC7A74E8022CA:003",
+      "01KQ0DFE299AC7A74E8022CA:000"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ0F8AFF3DA34FD4580008",
+    "call_type": "External",
+    "primary_theme": "Product planning & delivery",
+    "risk_score": 5.4,
+    "evidence_chunk_ids": [
+      "01KQ0F8AFF3DA34FD4580008:006",
+      "01KQ0F8AFF3DA34FD4580008:003",
+      "01KQ0F8AFF3DA34FD4580008:002",
+      "01KQ0F8AFF3DA34FD4580008:004"
+    ],
+    "review_required": true,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ1267C6AA7D9B3125FEC8",
+    "call_type": "Internal",
+    "primary_theme": "Compliance & reporting",
+    "risk_score": 3.0,
+    "evidence_chunk_ids": [
+      "01KQ1267C6AA7D9B3125FEC8:001",
+      "01KQ1267C6AA7D9B3125FEC8:007",
+      "01KQ1267C6AA7D9B3125FEC8:008",
+      "01KQ1267C6AA7D9B3125FEC8:005"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ1A6B7E81B06F4A13B60D",
+    "call_type": "Support",
+    "primary_theme": "Backup & recovery",
+    "risk_score": 5.6,
+    "evidence_chunk_ids": [
+      "01KQ1A6B7E81B06F4A13B60D:002",
+      "01KQ1A6B7E81B06F4A13B60D:003",
+      "01KQ1A6B7E81B06F4A13B60D:000",
+      "01KQ1A6B7E81B06F4A13B60D:004"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ1DC6CA536DE1B31ED8F5",
+    "call_type": "External",
+    "primary_theme": "Commercial & renewal",
+    "risk_score": 1.4,
+    "evidence_chunk_ids": [
+      "01KQ1DC6CA536DE1B31ED8F5:003",
+      "01KQ1DC6CA536DE1B31ED8F5:002",
+      "01KQ1DC6CA536DE1B31ED8F5:004",
+      "01KQ1DC6CA536DE1B31ED8F5:001"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ1DCC80852AE384C898C9",
+    "call_type": "External",
+    "primary_theme": "Commercial & renewal",
+    "risk_score": 4.8,
+    "evidence_chunk_ids": [
+      "01KQ1DCC80852AE384C898C9:004",
+      "01KQ1DCC80852AE384C898C9:006",
+      "01KQ1DCC80852AE384C898C9:005",
+      "01KQ1DCC80852AE384C898C9:002"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ1DE954A807A5D2653175",
+    "call_type": "Internal",
+    "primary_theme": "Product adoption & launch",
+    "risk_score": 1.4,
+    "evidence_chunk_ids": [
+      "01KQ1DE954A807A5D2653175:001",
+      "01KQ1DE954A807A5D2653175:003",
+      "01KQ1DE954A807A5D2653175:006",
+      "01KQ1DE954A807A5D2653175:004"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ2217B066855A3B7814CB",
+    "call_type": "External",
+    "primary_theme": "Reliability & incidents",
+    "risk_score": 5.8,
+    "evidence_chunk_ids": [
+      "01KQ2217B066855A3B7814CB:003",
+      "01KQ2217B066855A3B7814CB:007",
+      "01KQ2217B066855A3B7814CB:001",
+      "01KQ2217B066855A3B7814CB:005"
+    ],
+    "review_required": false,
+    "policy_flags": []
+  },
+  {
+    "meeting_id": "01KQ2331EFD78BF3B1CAB747",
+    "call_type": "Internal",
+    "primary_theme": "Reliability & incidents",
+    "risk_score": 8.8,
+    "evidence_chunk_ids": [
+      "01KQ2331EFD78BF3B1CAB747:005",
+      "01KQ2331EFD78BF3B1CAB747:002",
+      "01KQ2331EFD78BF3B1CAB747:003",
+      "01KQ2331EFD78BF3B1CAB747:004"
+    ],
+    "review_required": true,
+    "policy_flags": []
+  }
+]

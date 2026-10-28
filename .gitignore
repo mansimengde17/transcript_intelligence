@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+runtime/
+.pytest_cache/
+.DS_Store
+
+# Local credentials, editor files, and command history
+.env
+.env.*
+!.env.example
+.Rhistory
+.ipynb_checkpoints/
+.vscode/
+.idea/

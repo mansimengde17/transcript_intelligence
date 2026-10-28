@@ -1,0 +1,15 @@
+services:
+  transcript-intelligence:
+    build: .
+    environment:
+      TI_API_KEYS: "local-admin=admin:"
+    ports:
+      - "8080:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/runtime
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

@@ -1,0 +1,93 @@
+{
+  "meeting_count": 100,
+  "evidence_chunk_count": 758,
+  "retrieval_dimensions": 64,
+  "cluster_validation": {
+    "selected_clusters": 7,
+    "silhouette_score": 0.0417,
+    "candidate_scores": {
+      "5": 0.0372,
+      "6": 0.0277,
+      "7": 0.0417,
+      "8": 0.0348,
+      "9": 0.0311,
+      "10": 0.0362
+    },
+    "top_terms": {
+      "0": [
+        "billing",
+        "overage",
+        "summit trust",
+        "summit",
+        "trust",
+        "dispute",
+        "support",
+        "invoice"
+      ],
+      "1": [
+        "outage",
+        "pipeline",
+        "detect",
+        "failure",
+        "ingestion",
+        "post",
+        "team",
+        "review"
+      ],
+      "2": [
+        "hipaa",
+        "dss",
+        "pci dss",
+        "iso",
+        "27001",
+        "iso 27001",
+        "pci",
+        "v2"
+      ],
+      "3": [
+        "support",
+        "aegis",
+        "issue",
+        "backup",
+        "case",
+        "regarding",
+        "security support",
+        "support case"
+      ],
+      "4": [
+        "mfa",
+        "identity",
+        "sso",
+        "policy",
+        "management",
+        "session",
+        "mfa policy",
+        "access management"
+      ],
+      "5": [
+        "renewal",
+        "pricing",
+        "aegis",
+        "comply",
+        "outage",
+        "compliance",
+        "renewal compliance",
+        "upcoming"
+      ],
+      "6": [
+        "alert",
+        "deployment",
+        "alert fatigue",
+        "fatigue",
+        "brightpath",
+        "kendra",
+        "planning",
+        "observation"
+      ]
+    }
+  },
+  "sample_agent_runs": 12,
+  "sample_human_review_rate": 0.167,
+  "audit_chain_valid": true,
+  "audit_entries": 36
+}

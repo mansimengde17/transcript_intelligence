@@ -1,0 +1,33 @@
+customer_domain,meeting_count,avg_sentiment_score,max_risk_score,churn_signals,technical_issues,feature_gaps,latest_date,top_theme
+trailheadmkt.com,2,2.95,10.0,2,1,1,2026-04-05,Reliability & incidents
+northstarpharma.com,2,2.1,9.0,3,1,0,2026-03-15,Reliability & incidents
+crestlinewealth.com,3,3.67,9.0,2,1,1,2026-04-27,Identity & access
+blackridgeinvest.com,4,3.95,8.8,1,2,4,2026-04-25,Compliance & reporting
+coastalliving.com,4,3.53,8.4,3,2,2,2026-04-19,Identity & access
+stratoscloud.io,2,3.55,7.6,1,1,1,2026-04-22,Compliance & reporting
+cobaltsoftware.com,2,2.6,7.4,3,0,1,2026-04-11,Reliability & incidents
+helixdata.io,1,2.3,7.4,1,1,1,2026-03-17,Reliability & incidents
+summittrust.com,3,2.87,7.2,3,2,2,2026-04-15,Billing & pricing
+vantahealth.com,3,3.17,7.2,3,2,2,2026-02-28,Integrations & APIs
+novaretail.com,2,2.45,7.0,3,0,1,2026-03-21,Identity & access
+ironcladfinancial.com,1,2.8,7.0,2,0,0,2026-03-28,Reliability & incidents
+steelpointmfg.com,2,2.6,6.6,2,1,2,2026-03-24,Reliability & incidents
+ridgelinelogistics.com,3,2.63,6.4,3,3,1,2026-03-14,Reliability & incidents
+silverlinebrands.com,4,3.38,6.4,2,3,1,2026-04-18,Commercial & renewal
+clearwatermed.com,2,3.6,6.4,1,1,0,2026-04-10,Product adoption & launch
+meridiancapital.com,3,3.17,5.8,3,1,2,2026-03-26,Identity & access
+brightpathcommerce.com,4,3.25,5.6,3,3,0,2026-04-22,Product adoption & launch
+quantumedge.com,1,2.4,4.8,1,0,0,2026-03-19,Commercial & renewal
+pinnacleins.com,2,3.5,4.4,1,1,1,2026-04-16,Compliance & reporting
+redwoodclinical.com,2,4.0,4.4,1,0,1,2026-04-26,Compliance & reporting
+ironworkscorp.com,1,2.6,4.2,1,1,0,2026-04-14,Competitive intelligence
+forgeindustries.com,3,4.1,3.6,2,1,1,2026-04-09,Compliance & reporting
+harborviewbank.com,1,3.9,3.4,0,1,0,2026-03-05,Compliance & reporting
+maplewoodgoods.com,1,4.8,2.6,0,0,1,2026-02-27,Compliance & reporting
+axiomlabs.dev,1,4.2,2.4,1,0,1,2026-04-17,Commercial & renewal
+nimbusplatform.com,2,4.15,2.2,0,1,2,2026-04-01,Compliance & reporting
+bridgeporthealth.com,2,4.1,1.4,0,0,1,2026-04-23,Compliance & reporting
+atlasprecision.com,2,4.0,1.2,0,0,2,2026-04-28,Commercial & renewal
+frostbyte.ai,2,4.25,0.8,0,0,3,2026-04-25,Identity & access
+pineridge.io,2,4.3,0.4,0,1,1,2026-03-04,Commercial & renewal
+keystonehealth.com,1,4.4,0.0,0,1,0,2026-03-09,Commercial & renewal
