@@ -27,7 +27,8 @@ class AnalyzeRequest(BaseModel):
 
 
 def _configured_keys() -> dict[str, tuple[str, tuple[str, ...]]]:
-    # Format: key=role:scope1|scope2,key2=admin:
+    # Each demo key specifies a role and optional account domains, separated by |.
+    # For example, local-admin=admin: gives the demo admin no account restriction.
     raw = os.getenv("TI_API_KEYS", "local-admin=admin:")
     result = {}
     for entry in raw.split(","):
@@ -49,6 +50,7 @@ def access_context(x_api_key: str = Header(alias="X-API-Key")) -> AccessContext:
 
 @lru_cache(maxsize=1)
 def services() -> tuple[HybridRetriever, TranscriptAgentSystem]:
+    # Build the search index once, then reuse it for later requests.
     chunks = load_corpus(ROOT / "data" / "raw")
     retriever = HybridRetriever(chunks)
     agent = TranscriptAgentSystem(ROOT / "data" / "raw", retriever, ROOT / "runtime")

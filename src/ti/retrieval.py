@@ -82,6 +82,7 @@ class HybridRetriever:
         semantic_query = self.normalizer.transform(self.svd.transform(query_sparse))
         semantic = cosine_similarity(semantic_query, self.semantic).ravel()
         bm25 = self.bm25.scores(query)
+        # Give exact-word matches a little more weight while keeping related language useful.
         combined = 0.40 * bm25 + 0.30 * lexical + 0.30 * semantic
         ranked = np.argsort(-combined)
         results = []
@@ -89,6 +90,7 @@ class HybridRetriever:
             chunk = self.chunks[int(index)]
             if account_domain and account_domain not in chunk.customer_domain.split(";"):
                 continue
+            # Skip evidence outside the caller's account scope before returning results.
             if context.account_scopes and chunk.customer_domain:
                 domains = set(filter(None, chunk.customer_domain.split(";")))
                 if domains and not domains.intersection(context.account_scopes):

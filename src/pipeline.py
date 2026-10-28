@@ -125,7 +125,7 @@ def score_themes(text: str) -> list[tuple[str, int, list[str]]]:
     for theme, keywords in THEME_RULES.items():
         matched = sorted({keyword for keyword in keywords if keyword in text})
         if matched:
-            # Phrase matches are transparent; multiple independent signals raise confidence.
+            # Keep the matched phrases so a reviewer can see why this theme was chosen.
             scored.append((theme, len(matched), matched))
     return sorted(scored, key=lambda item: (-item[1], item[0]))
 
@@ -136,6 +136,7 @@ def score_themes_weighted(title: str, summary: str, topics: list[str], moments: 
     Titles carry the strongest intent signal, source topics carry the next strongest signal,
     and free-form summaries/key moments provide recall without dominating clear meeting intent.
     """
+    # A clear meeting title should outweigh an incidental mention in a long summary.
     fields = [
         (title.lower(), 8.0),
         (" ".join(topics).lower(), 2.0),

@@ -119,9 +119,11 @@ class AgentGraph:
                     next_node = node(state)
                     attributes["next_node"] = next_node
                     attributes["node_latency_ms"] = round((time.perf_counter() - started) * 1000, 3)
+                # Save progress after each completed step so its decisions can be inspected.
                 state.current_node = next_node
                 self.checkpoints.save(state, step)
             except Exception as exc:
+                # Send unexpected failures for review rather than continuing with partial results.
                 state.errors.append(f"{node_name}: {type(exc).__name__}: {exc}")
                 state.review_required = True
                 state.current_node = "human_review"
